@@ -1,0 +1,321 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* Background Slideshow with Dark Parallax Effect */
+.mining-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 110vh;
+    z-index: -1;
+    overflow: hidden;
+    animation: parallax 10s infinite alternate ease-in-out;
+    background: linear-gradient(
+        to bottom,
+        rgba(13, 0, 25, 0.9),
+        rgba(0, 0, 0, 1)
+    );
+}
+
+.mining-background img {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out, transform 6s ease-in-out;
+    transform: scale(1.15);
+    filter: brightness(0.4) contrast(1.2) saturate(0.8) hue-rotate(240deg);
+    mix-blend-mode: color-burn;
+}
+
+.mining-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(64, 0, 128, 0.2) 0%,
+        rgba(0, 0, 0, 0.95) 70%
+    );
+    pointer-events: none;
+}
+
+/* Active Background */
+.mining-background img.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Parallax Effect */
+@keyframes parallax {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-20px); }
+}
+
+/* Particle Animation */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.particles div {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #4a0072, #ff006a);
+    box-shadow: 0 0 15px rgba(128, 0, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 8s infinite ease-in-out;
+}
+
+@keyframes floatParticle {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-150px) translateX(50px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-300px) translateX(-100px);
+    }
+}
+
+/* Gradient Overlay with Animation */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        rgba(13, 0, 25, 0.8),
+        rgba(64, 0, 128, 0.4)
+    );
+    z-index: 0;
+    animation: darkGradientShift 8s infinite alternate;
+}
+
+@keyframes darkGradientShift {
+    0% { 
+        background: linear-gradient(45deg,
+            rgba(13, 0, 25, 0.8),
+            rgba(64, 0, 128, 0.4)
+        );
+    }
+    100% { 
+        background: linear-gradient(45deg,
+            rgba(0, 0, 0, 0.9),
+            rgba(72, 0, 144, 0.5)
+        );
+    }
+}
+
+/* Home Container with Dark Glass Effect */
+.home-container {
+    background: rgba(10, 0, 15, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(128, 0, 128, 0.2);
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 8px 32px rgba(128, 0, 128, 0.2);
+    text-align: center;
+    min-width: 320px;
+    animation: containerGlow 4s infinite alternate;
+}
+
+/* Dark Theme Heading */
+h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(
+        45deg,
+        #ff0055,
+        #8000ff
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
+    margin-bottom: 20px;
+}
+
+h1::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        #0a2463 0%,
+        #1e4d92 50%,
+        #0a2463 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0.7;
+    animation: darkPulse 3s infinite alternate;
+}
+
+/* Subtitle */
+p {
+    color: #b892ff;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced Mining Icon Animation */
+.mining-icons {
+    width: 130px;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 15px rgba(0, 174, 255, 0.5));
+    animation: floating 3s infinite ease-in-out, rotateSlight 6s infinite linear;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes rotateSlight {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Button Container */
+.home-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    animation: slideInFromBottom 1.5s ease-in-out;
+}
+
+/* Button Styles */
+.btn {
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: white;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(45deg, #1a0024, #3d0066);
+    border: 1px solid rgba(128, 0, 128, 0.3);
+    box-shadow: 0 0 15px rgba(128, 0, 128, 0.3);
+}
+
+.login { 
+    background: linear-gradient(45deg, #330033, #660066);
+}
+
+.register { 
+    background: linear-gradient(45deg, #400040, #800080);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(128, 0, 128, 0.5);
+    background: linear-gradient(45deg, #ff0055, #8000ff);
+}
+
+/* Pulse Glow Effect */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+    100% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+}
+
+/* Sliding Animation */
+@keyframes slideInFromBottom {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* New Animations */
+@keyframes containerGlow {
+    0% { box-shadow: 0 0 20px rgba(128, 0, 128, 0.2); }
+    100% { box-shadow: 0 0 40px rgba(255, 0, 85, 0.3); }
+}
+
+@keyframes darkPulse {
+    0%, 100% { opacity: 0.95; }
+    50% { opacity: 0.85; }
+}
+
+/* Enhanced Responsive Design */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+        letter-spacing: 0.5px;
+    }
+
+    p {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
+
+    .home-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 12px 28px;
+        font-size: 1.2rem;
+    }
+
+    .mining-icons {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}
